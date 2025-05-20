@@ -145,7 +145,7 @@ $('#searchNameInput').on('keyup', function () {
 
 
     let searchVal = $(this).val()
-    showLoading(false)
+    // showLoading(false)
     searchByName(searchVal)
 })
 
@@ -192,9 +192,10 @@ async function searchByName(name) {
     } catch (err) {
         console.error('Error in fetching results', err);
         $('#searchSec #rowDataSearch').html(`<h3 class="text-center text-danger py-5">Failed to load search results. Please try again later.</h3>`)
-    } finally {
-        hideLoading();
-    }
+    } 
+    // finally {
+    //     hideLoading();
+    // }
 
 }
 
@@ -205,7 +206,7 @@ $('#searchLetterInput').on('keyup', function () {
     let searchVal = $(this).val()
 
     if (searchVal.length === 1 && searchVal.trim() !== '') {
-        showLoading(false)
+        // showLoading(false)
         searchByLetter(searchVal)
     } else if (searchVal.trim() === '') {
         $('#searchSec #rowDataSearch').html('')
@@ -259,9 +260,10 @@ async function searchByLetter(char) {
     } catch (err) {
         console.error('Error in fetching results', err);
         $('#searchSec #rowDataSearch').html(`<h3 class="text-center text-danger py-5">Failed to load search results. Please try again later.</h3>`)
-    } finally {
-        hideLoading();
-    }
+    } 
+    // finally {
+    //     hideLoading();
+    // }
 }
 
 
@@ -280,7 +282,7 @@ $('#categoriesLi').on('click', function () {
 
 async function showAllCategories() {
     try {
-        showLoading(false)
+        // showLoading(false)
         const result = await fetch(`https://www.themealdb.com/api/json/v1/1/categories.php`)
 
         if (!result.ok) {
@@ -315,9 +317,10 @@ async function showAllCategories() {
     } catch (err) {
         console.error('Error in fetching categories', err);
         $('#categoriesSec #rowDataCategories').html(`<h3 class="text-center text-danger py-5">Failed to load categories. Please try again later.</h3>`)
-    } finally {
-        hideLoading();
-    }
+    } 
+    // finally {
+    //     hideLoading();
+    // }
 }
 
 
@@ -338,7 +341,7 @@ async function showMealsByCategory(categoryName) {
 
     try {
 
-        showLoading(false)
+        // showLoading(false)
         const result = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryName}`);
         const data = await result.json();
         const dataArr = data.meals
@@ -362,9 +365,10 @@ async function showMealsByCategory(categoryName) {
     } catch (err) {
         console.error('Error in fetching categories', err);
         $('#selectedCategSec .row').html(`<h3 class="text-center text-danger py-5">Failed to load categories. Please try again later.</h3>`)
-    } finally {
-        hideLoading();
-    }
+    } 
+    // finally {
+    //     hideLoading();
+    // }
 }
 
 
@@ -384,7 +388,7 @@ $('#areaLi').on('click', function () {
 
 async function getAreas() {
 
-    showLoading(false)
+    // showLoading(false)
     const result = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
     const data = await result.json()
 
@@ -392,7 +396,7 @@ async function getAreas() {
     console.log(data.meals);
 
     displayAreas(dataArr)
-    hideLoading();
+    // hideLoading();
 
 }
 
@@ -434,13 +438,13 @@ $(document).on('click', '.country', async function () {
     $('#selectedAreaSec .head h1').text(`${areaName} Meals`);
 
 
-    showLoading(false)
+    // showLoading(false)
     const result = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${areaName}`);
     const data = await result.json();
     const dataArr = data.meals
 
     displayMeals(dataArr);
-    hideLoading();
+    // hideLoading();
 
 });
 
@@ -579,7 +583,7 @@ $('#ingredientsLi').on('click', function () {
 async function showAllIngrediants() {
     try {
 
-        showLoading(false)
+        // showLoading(false)
         const result = await fetch(`https://www.themealdb.com/api/json/v1/1/list.php?i=list`)
 
         if (!result.ok) {
@@ -616,9 +620,10 @@ async function showAllIngrediants() {
     } catch (err) {
         console.error('Error fetching ingredients:', err);
         $('#ingrediantsSec #rowDataIngrediants').html(`<h3 class="text-center text-danger py-5">Failed to load ingredients. Please try again later.</h3>`)
-    } finally {
-        hideLoading();
-    }
+    } 
+    // finally {
+    //     hideLoading();
+    // }
 }
 
 
@@ -629,12 +634,12 @@ async function showAllIngrediants() {
 async function getMealDetailsById(id) {
     try {
 
-        showLoading(false)
+        // showLoading(false)
         const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
         const data = await res.json();
         const meal = data.meals[0];
         displayMealDetails(meal);
-        hideLoading();
+        // hideLoading();
 
     } catch (err) {
         console.error('Error fetching meal details:', err);
@@ -648,7 +653,7 @@ async function getMealsByIngredient(ingredientName) {
     $('#selectedIngrediantSec .head h1').text(`${ingredientName} Ingredient Meals`)
 
     try {
-        showLoading(false)
+        // showLoading(false)
         const result = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredientName}`);
         const data = await result.json();
         const dataArr = data.meals
@@ -677,9 +682,10 @@ async function getMealsByIngredient(ingredientName) {
     } catch (err) {
         console.error('Error fetching meals by ingredient:', err);
         $('#rowDataSelectedIngrediants').html(`<h3 class="text-center text-danger py-5">Failed to load meals.</h3>`);
-    } finally {
-        hideLoading();
-    }
+    } 
+    // finally {
+    //     hideLoading();
+    // }
 }
 
 
